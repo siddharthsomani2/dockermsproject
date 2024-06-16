@@ -66,7 +66,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git 'https://github.com/RAHAMSHAIK007/dockernewproject.git'
+                git 'https://github.com/siddharthsomani2/dockermsproject.git'
             }
         }
         stage('build') {
@@ -83,6 +83,11 @@ pipeline {
             steps {
                 sh 'docker login -u  -p '
                 sh 'docker push $repo'
+            }
+        }
+        stage('deploy'){
+            steps{
+                sh 'docker stack deploy -c docker-compose.yml paytm'
             }
         }
     }
